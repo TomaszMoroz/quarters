@@ -28,10 +28,8 @@ const password = ref('');
 const login = async () => {
   try {
     await signInWithEmailAndPassword(firebaseAuth, email.value, password.value);
-    router.push('/files');
-    console.log(firebaseAuth)
+    router.push('/');
   } catch (error) {
-    console.log(firebaseAuth)
     console.error('Login failed:', error.message);
   }
 };

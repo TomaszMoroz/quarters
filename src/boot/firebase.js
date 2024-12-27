@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { ref } from 'vue';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBoEqyTya6778nl8d2WogPn01BAauM88WM",
@@ -17,5 +18,10 @@ const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
+const user = ref(null)
 
-export { firebaseApp, firebaseAuth, db, storage };
+onAuthStateChanged(firebaseAuth, (currentUser) => {
+  user.value = currentUser;
+});
+
+export { firebaseApp, firebaseAuth, db, storage, user };
