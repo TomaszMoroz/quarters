@@ -5,7 +5,7 @@
       "port": 9399
     },
     "functions": {
-      "port": 5001
+      "source": "foo"
     },
     "firestore": {
       "port": 8080
@@ -42,11 +42,37 @@
         "firebase-debug.*.log",
         "*.local"
       ]
+    },
+    {
+      "source": "funcs",
+      "codebase": "funcs",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    },
+    {
+      "source": "foo",
+      "codebase": "functions",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
     }
   ],
   "hosting": {
     "public": "dist/spa",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",

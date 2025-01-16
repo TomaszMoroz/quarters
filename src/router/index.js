@@ -1,5 +1,5 @@
 import { route } from 'quasar/wrappers'
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
+import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router'
 import routes from './routes'
 import { user } from 'src/boot/firebase';
 
@@ -28,19 +28,20 @@ export default route(function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach((to, from, next) => {
-  const requiresAuth = to.meta.requiresAuth;
+    const requiresAuth = to.meta.requiresAuth;
+    const isAuthenticated = user.value; // Check if the user is logged in
 
-  if (requiresAuth && !user.value) {
-    // If the route requires auth but the user is not logged in, redirect to login
-    next({ name: 'Login' });
-  } else if (!requiresAuth && user.value) {
-    // If the user is logged in and tries to visit the login page, redirect to main
-    next({ name: 'Home' });
-  } else {
-    // Otherwise, proceed with the navigation
-    next();
-  }
-});
+    if (requiresAuth && !isAuthenticated) {
+      // If the route requires auth but the user is not logged in, redirect to login
+      next({ name: 'Login' });
+    } else if (!requiresAuth && isAuthenticated) {
+      // If the user is logged in and tries to visit the login page, redirect to home
+      next({ name: 'Home' });
+    } else {
+      // Otherwise, proceed with the navigation
+      next();
+    }
+  });
 
   return Router
 })

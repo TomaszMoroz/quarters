@@ -2,13 +2,12 @@
   <q-page>
     <q-card class="q-pa-md" style="max-width: 400px; margin: auto;">
       <q-card-section>
-        <div class="text-h6">Upload Image</div>
+        <div class="text-h6">Upload File</div>
       </q-card-section>
 
       <q-card-section>
         <q-uploader
-          label="Select an image"
-          accept="image/*"
+          label="Select file"
           auto-upload
           @added="uploadImage"
         />
