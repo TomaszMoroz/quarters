@@ -5,7 +5,7 @@
       "port": 9399
     },
     "functions": {
-      "source": "foo"
+      "source": "functions"
     },
     "firestore": {
       "port": 8080
@@ -35,28 +35,6 @@
     {
       "source": "functions",
       "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "*.local"
-      ]
-    },
-    {
-      "source": "funcs",
-      "codebase": "funcs",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "*.local"
-      ]
-    },
-    {
-      "source": "foo",
-      "codebase": "functions",
       "ignore": [
         "node_modules",
         ".git",
